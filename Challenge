@@ -1,0 +1,88 @@
+✅ Detect and format for the user's local language:
+
+const userLocale11 = navigator.language; // e.g., "es-ES"
+
+const formatter11 = new Intl.DateTimeFormat(userLocale11, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+});
+
+console.log(formatter.format(new Date()));
+
+//! ✅ This means the program automatically adapts to whatever language the user's browser is set to — no hardcoded 'en-US' required.
+
+//  🌍 Challenge:
+//? ✅ Format and display a global event date (like the 2025 Olympics) in 3 different user languages using Intl.DateTimeFormat.
+
+//* 🎯 Requirements:
+//  1. Use a fixed date, like:
+// const olympics = new Date('2025-07-25');
+
+//  2. Format that date using:
+//  - 'en-US' (U.S. English)
+//  - 'fr-FR' (French)
+//  - 'ja-JP' (Japanese)
+
+//  3. Use full formatting:
+// { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+
+//  4. Display output clearly:
+//  - 🇺🇸 US: Friday, July 25, 2025
+//  - 🇫🇷 FR: vendredi 25 juillet 2025
+//  - 🇯🇵 JP: 2025年7月25日金曜日
+
+//* ✅ Bonus:
+//  Wrap it in a function like:
+
+// function formatEventDate(date, locale) { return new Intl.DateTimeFormat(locale, options).format(date);}
+
+
+//? Solution:
+
+const olympics = new Date('2025-07-25');
+
+const us = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+}).format(olympics);
+
+const fr = new Intl.DateTimeFormat('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+}).format(olympics);
+
+const jp = new Intl.DateTimeFormat('ja-JP', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+}).format(olympics);
+
+console.log(us);                            // 🇺🇸 US: Friday, July 25, 2025
+console.log(fr);                            // 🇫🇷 FR: vendredi 25 juillet 2025
+console.log(jp);                            // 🇯🇵 JP: 2025年7月25日金曜日
+
+
+//? ✅ Bonus Solution:
+
+const olympics5 = new Date('2025-07-25')
+
+function formatEventDate(date, locale) {
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    return new Intl.DateTimeFormat(locale, options).format(date);
+};
+
+console.log('US', formatEventDate(olympics5, 'en-US'));
+console.log('FR', formatEventDate(olympics5, 'fe-FR'));
+console.log('JP', formatEventDate(olympics5, 'ja-JP'));
